@@ -217,7 +217,8 @@ map <Leader>= <C-w>=
 
 if !has("gui_running")
   colorscheme hybrid
-  set t_Co=256
+  "set t_Co=256
+  set term=screen-256color
   set clipboard=unnamed
   set background=dark
 endif
