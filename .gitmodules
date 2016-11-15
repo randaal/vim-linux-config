@@ -31,6 +31,3 @@
 [submodule "bundle/vim-buffergator"]
 	path = bundle/vim-buffergator
 	url = https://github.com/jeetsukumaran/vim-buffergator.git
-[submodule "bundle/hammer"]
-	path = bundle/hammer
-	url = https://github.com/wikimatze/hammer.vim
