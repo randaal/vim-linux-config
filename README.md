@@ -2,12 +2,11 @@ You dont need to move around any files.
 
 clone with 
 ``` bash
-$ git pull <URL> --recurse
+$ git clone <URL> ~/.vim --recurse
 ```
 You need to create a blank .vimrc in ~ and then add:
 
 ``` bash
-$ set rtp+=~/.vim/rc/.vimrc
-$ source ~/.vim/rc/.vimrc
+$ echo 'set rtp+=~/.vim/rc/.vimrc' >> ~/.vimrc
+$ echo 'source ~/.vim/rc/.vimrc' >> ~/.vimrc
 ```
-to your ~/.vimrc file
