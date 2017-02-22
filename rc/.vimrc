@@ -14,8 +14,9 @@ filetype indent on
 
 let mapleader=","
 
-set ts=2
-set sw=2
+set ts=4
+set sts=4
+set sw=4
 set expandtab
 set guioptions-=m
 set guioptions-=T
@@ -86,16 +87,61 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " ditch all trailing whitespace
-nnoremap <leader>w :%s/\v\s+$//g<cr>:let @/=''<cr>
+nnoremap <leader>ws :%s/\v\s+$//g<cr>:let @/=''<cr>
+
+" save the current file
+nnoremap <leader>w :w<cr>
+
+" save and quit the current file
+nnoremap <leader>wq :wq<cr>
+nnoremap <leader>x :x<cr>
 
 " reselect text that was just pasted
 nnoremap <leader>v v`]
 
+" clear search highlighting
+nnoremap <leader>/ :noh<cr>
+
+" swap current word with recently copied
+nmap <leader>cp "_ciw<C-R>"<Esc>
+
+" Make Y act like every other capital letter (normal its an alias for yy)
+nnoremap Y y$
+
+" add/remove line numbers
+nnoremap <leader>1 :set number<cr>
+nnoremap <leader>! :set nonumber<cr>
+
 " edit vimrc in a vertical split
 nnoremap <leader>rc <C-w><C-v><C-l>:e ~/.vim/rc/.vimrc<cr>
 
+" enter vertical split mode
+nnoremap <leader>vv :vsp<cr>
+
+" enter vertical split mode with temp [noname] file
+nnoremap <leader>vn :vnew<cr>
+
+" enter horizontal split mode
+nnoremap <leader>hh :sp<cr>
+
+" quit the current window
+nnoremap <leader>q :q<cr>
+
+" Go to start of function
+nnoremap <leader>[ 99[{
+
+" Go to end of function
+nnoremap <leader>] 99]}
+
+" open registers
+nnoremap <leader>rr :reg<cr>
+
+" list current files in buffer (commented cause using buffergator)
+" nnoremap <leader>ls :ls<cr>
+
 " when typing jj in insert mode, go back to normal mode
 inoremap jj <ESC>
+inoremap jk <ESC>
 
 " jump to start and end
 nnoremap <leader>end $
@@ -106,7 +152,7 @@ nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 
 " markdown preview
-nnoremap <silent> <Leader>md :Hammer<cr>
+"nnoremap <silent> <Leader>md :Hammer<cr>
 
 " visual indication for long lines
 set colorcolumn=91
@@ -120,8 +166,9 @@ exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 nmap <silent> <leader>s :set nolist!<CR>
 
 " underline the current line
-nmap <silent> <leader>sul yypVr-
-nmap <silent> <leader>dul yypVr=
+nmap <silent> <leader>sul yypVr=
+"nmap <silent> <leader>sul yypVr-
+"nmap <silent> <leader>dul yypVr=
 
 " get rid of annoying prompts
 set shortmess=atI
@@ -161,6 +208,9 @@ set mousehide
 nnoremap <silent> <Leader>b :BuffergatorOpen<CR>
 nnoremap <silent> <Leader>B :BuffergatorClose<CR>
 
+"nnoremap <silent> <Leader>bd :bd<CR>
+nnoremap <silent> <Leader>d :bd<CR>
+
 " use :w!! to write to a file using sudo if you forgot to 'sudo vim file'
 " (it will prompt for sudo password when writing)
 cmap w!! %!sudo tee > /dev/null %
@@ -178,6 +228,10 @@ nmap <silent> ,. :bnext<CR>
 " Previous buffer
 nmap <silent> ,m :bprev<CR>
 
+" create newline
+"nmap <leader><ENTER> i<ENTER><Esc>ge
+nmap <leader><ENTER> i<ENTER><Esc>
+
 " upper/lower word
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
@@ -186,8 +240,11 @@ nmap <leader>l mQviwu`Q
 nmap <leader>U mQgewvU`Q
 nmap <leader>L mQgewvu`Q
 
-" cd to the directory containing the file in the buffer
-nmap <silent> <leader>cd :lcd %:h<CR>
+" cd to the directory containing the file in the buffer (commenting out until I can figure out what it does)
+" nmap <silent> <leader>cd :lcd %:h<CR>
+
+" shortcut to use clipboardRegister (Note: still need to add y or d afterwards, examples: ,Cyiw or ,Cdd or ,Cp)
+nmap <leader>C "+
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
@@ -208,12 +265,18 @@ map <Down> gj
 map <Up> gk
 
 " Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
+"nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
 nmap <leader>n :NERDTreeToggle<CR>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
+
+" Increase/Decrease size of horizontal/vertical split
+map <Leader>< <C-w>10<
+map <Leader>> <C-w>10>
+map <Leader>+ <C-w>5+
+map <Leader>- <C-w>5-
 
 if !has("gui_running")
   colorscheme hybrid
