@@ -151,13 +151,10 @@ nnoremap <leader>st ^
 nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 
-" markdown preview
-"nnoremap <silent> <Leader>md :Hammer<cr>
-
+"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 " visual indication for long lines
-set colorcolumn=91
-" but only show it when the line is actually long.
-call matchadd('ColorColumn', '\%91v', 100)
+match ErrorMsg '\%>80v.\+'
+
 
 " List chars with unicode
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
@@ -264,9 +261,6 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 map <Down> gj
 map <Up> gk
 
-" Toggle hlsearch with <leader>hs
-"nmap <leader>hs :set hlsearch! hlsearch?<CR>
-
 nmap <leader>n :NERDTreeToggle<CR>
 
 " Adjust viewports to the same size
@@ -283,7 +277,7 @@ if !has("gui_running")
   "set t_Co=256
   set term=screen-256color
   set clipboard=unnamed
-  set background=dark
+"  set background=dark
 endif
 
 if has("gui_running")
@@ -294,15 +288,8 @@ if has("gui_running")
   endif
 endif
 
-
-
-
-
-
 "set backupdir=~/.vim/_backup//    " where to put backup files.
 "set directory=~/.vim/_temp//      " where to put swap files.
-
-map <leader>zw <Plug>ZoomWin
 
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
