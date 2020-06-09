@@ -151,9 +151,8 @@ nnoremap <leader>st ^
 nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 
-"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.......
 " visual indication for long lines
-match ColorColumn '\%>80v.\+'
+"match ColorColumn '\%>80v.\+'
 
 
 " List chars with unicode
@@ -243,6 +242,7 @@ nmap <leader>L mQgewvu`Q
 " shortcut to use clipboardRegister (Note: still need to add y or d afterwards, examples: ,Cyiw or ,Cdd or ,Cp)
 nmap <leader>C "+
 
+
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -276,8 +276,8 @@ if !has("gui_running")
   colorscheme hybrid
   "set t_Co=256
   set term=screen-256color
-  set clipboard=unnamed
-"  set background=dark
+  set clipboard^=unnamed,unnamedplus
+  set background=dark
 endif
 
 if has("gui_running")
@@ -319,4 +319,13 @@ augroup NoSimultaneousEdits
   autocmd SwapExists * echohl None
   autocmd SwapExists * sleep 2
 augroup END
+
+
+augroup CNAsyntaxhighlight
+  au!
+  autocmd BufNewFile,BufRead *.cna  set syntax=ruby
+augroup END
+
+" Syntax highlighting for .nessus files
+au BufNewFile, BufRead *.nessus set filetype=xml
 
